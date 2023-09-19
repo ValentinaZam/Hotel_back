@@ -17,19 +17,14 @@ const registrationUserJoi = celebrate({
   }),
 });
 
-const addMoviesJoi = celebrate({
+const addRoomsJoi = celebrate({
   body: Joi.object().keys({
-    country: Joi.string().required(),
-    director: Joi.string().required(),
-    duration: Joi.number().required(),
-    year: Joi.string().required(),
     description: Joi.string().required(),
     image: Joi.string().required().regex(URL_REGEX),
-    trailerLink: Joi.string().required().regex(URL_REGEX),
-    thumbnail: Joi.string().required().regex(URL_REGEX),
-    movieId: Joi.number().required(),
-    nameRU: Joi.string().required(),
-    nameEN: Joi.string().required(),
+    roomId: Joi.number().required(),
+    name: Joi.string().required(),
+    category: Joi.string().required(),
+    status: Joi.boolean().required(),
   }),
 });
 
@@ -40,7 +35,7 @@ const updateUserJoi = celebrate({
   }),
 });
 
-const deletedMovieJoi = celebrate({
+const deletedRoomJoi = celebrate({
   params: Joi.object().keys({
     _id: Joi.string().required().length(24).hex(),
   }),
@@ -49,8 +44,8 @@ const deletedMovieJoi = celebrate({
 module.exports = {
   URL_REGEX,
   updateUserJoi,
-  addMoviesJoi,
-  deletedMovieJoi,
+  addRoomsJoi,
+  deletedRoomJoi,
   registrationUserJoi,
   loginJoi,
 };

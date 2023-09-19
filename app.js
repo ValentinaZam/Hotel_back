@@ -8,10 +8,10 @@ const routes = require("./routes");
 const { PORT, URL } = require("./utils/config");
 const limiter = require("./middlewares/rateLimiter");
 const { requestLogger, errorLogger } = require("./middlewares/logger");
+
 const errorHandler = require("./middlewares/errorHandler");
 
 mongoose.set("strictQuery", true);
-
 mongoose
   .connect(URL)
   .then(() => {
@@ -24,8 +24,8 @@ mongoose
 const app = express();
 
 const allowedCors = [
-  "https://cine-selecta.nomoreparties.co",
-  "http://cine-selecta.nomoreparties.co",
+  // "https://cine-selecta.nomoreparties.co",
+  // "http://cine-selecta.nomoreparties.co",
   "https://localhost:3000",
   "http://localhost:3001",
 ];

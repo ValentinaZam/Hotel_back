@@ -4,7 +4,7 @@ const {
   JWT_SECRET,
   NODE_ENV,
   PORT = 3000,
-  URL = "mongodb://127.0.0.1:27017/bitfilmsdb",
+  URL = "mongodb://127.0.0.1:27017/hotel",
 } = process.env;
 
 if (NODE_ENV === "production") {

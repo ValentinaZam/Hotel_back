@@ -3,7 +3,6 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/user");
 const { SECRET_KEY } = require("../utils/config");
-
 const {
   HTTP_STATUS_CREATED,
   USER_NOT_FOUND,
