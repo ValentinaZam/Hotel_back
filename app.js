@@ -24,8 +24,12 @@ mongoose
 const app = express();
 
 const allowedCors = [
-  "https://petprodject-hotelpanet.ru",
-  "http://petprodject-hotelpanet.ru",
+  "http://my.petprodject-hotelpanet.ru",
+  "http://api.petprodject-hotelpanet.ru",
+  "https://my.petprodject-hotelpanet.ru",
+  "https://api.petprodject-hotelpanet.ru",
+  // "https://petprodject-hotelpanet.ru",
+  // "http://petprodject-hotelpanet.ru",
   "https://localhost:3000",
   "http://localhost:3001",
 ];
