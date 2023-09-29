@@ -7,7 +7,6 @@ const {
   HTTP_STATUS_CREATED,
   USER_NOT_FOUND,
   INCORRECT_USER_DATA,
-  INCORRECT_UPDATE_USER_DATA,
   EMAIL_ALREADY_REGISTERED,
   INCORRECT_ADD_USER_DATA,
 } = require("../utils/constants");
@@ -63,32 +62,32 @@ const getCurrentUserInfo = (req, res, next) => {
     });
 };
 
-const editProfileUserInfo = (req, res, next) => {
-  const { _id } = req.user;
-  const { name, email } = req.body;
-  User.findByIdAndUpdate(_id, { name, email }, {
-    new: true,
-    runValidators: true,
-  })
-    .then((user) => {
-      checkData(user);
-      res.send(user);
-    })
-    .catch((err) => {
-      if (err.code === 11000) {
-        return next(new ConflictingError(EMAIL_ALREADY_REGISTERED));
-      }
-      if (err.name === "ValidationError") {
-        return next(new BadRequestError(INCORRECT_UPDATE_USER_DATA));
-      }
-      return next(err);
-    });
-};
+// const editRoomInfo = (req, res, next) => {
+//   const { _id } = req.user;
+//   const { name, email } = req.body;
+//   User.findByIdAndUpdate(_id, { name, email }, {
+//     new: true,
+//     runValidators: true,
+//   })
+//     .then((room) => {
+//       if (!room) throw new NotFoundError(USER_NOT_FOUND);
+//       res.send(room);
+//     })
+//     .catch((err) => {
+//       if (err.code === 11000) {
+//         return next(new ConflictingError(EMAIL_ALREADY_REGISTERED));
+//       }
+//       if (err.name === "ValidationError") {
+//         return next(new BadRequestError(INCORRECT_UPDATE_USER_DATA));
+//       }
+//       return next(err);
+//     });
+// };
 
 const login = (req, res, next) => {
-  const { email, password } = req.body;
+  const { email, password, id } = req.body;
 
-  return User.findUserByCredentials(email, password)
+  return User.findUserByCredentials(email, password, id)
     .then((user) => {
       const token = jwt.sign(
         { _id: user._id },
@@ -103,6 +102,5 @@ const login = (req, res, next) => {
 module.exports = {
   registrationUser,
   getCurrentUserInfo,
-  editProfileUserInfo,
   login,
 };

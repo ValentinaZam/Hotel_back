@@ -16,8 +16,7 @@ const roomsSchema = new mongoose.Schema({
     },
   },
   owner: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "user",
+    type: String,
     required: true,
   },
   roomId: {
@@ -37,6 +36,18 @@ const roomsSchema = new mongoose.Schema({
     required: true,
   },
 });
+
+roomsSchema.statics.findUserByCredentials = function findUserByCredentials(status) {
+  return this.findOne({ status })
+    // .select("+password")
+    .then((room) => {
+      if (!room) {
+        // throw new UnauthorizedError(INVALID_AUTH_CREDENTIALS);
+        console.log("hgig");
+      }
+      return room;
+    });
+};
 
 const Room = mongoose.model("room", roomsSchema);
 module.exports = Room;

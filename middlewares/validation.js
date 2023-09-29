@@ -21,7 +21,7 @@ const addRoomsJoi = celebrate({
   body: Joi.object().keys({
     description: Joi.string().required(),
     image: Joi.string().required().regex(URL_REGEX),
-    roomId: Joi.number().required(),
+    roomId: Joi.string().required(),
     name: Joi.string().required(),
     category: Joi.string().required(),
     status: Joi.boolean().required(),
