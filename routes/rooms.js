@@ -5,6 +5,7 @@ const {
   deleteRoom,
   editRoomInfo,
   getRoom,
+  addNewRoom,
 } = require("../controllers/rooms");
 const validator = require("../middlewares/validation");
 
@@ -15,5 +16,6 @@ router.post("/:_id", addRoom);
 router.delete("/:id", validator.deletedRoomJoi, deleteRoom);
 router.patch("/:_id", editRoomInfo);
 router.get("/:_id", getRoom);
+router.post("/", addNewRoom);
 
 module.exports = router;

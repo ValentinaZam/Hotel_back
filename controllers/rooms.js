@@ -132,10 +132,42 @@ const getRoom = async (req, res) => {
   }
 };
 
+function addNewRoom(req, res, next) {
+  const {
+    description,
+    image,
+    roomId,
+    name,
+    category,
+    status,
+    owner,
+  } = req.body;
+  // const { userId } = req.user;
+  Room
+    .create({
+      description,
+      image,
+      roomId,
+      name,
+      category,
+      status,
+      owner,
+    })
+    .then((card) => res.status(201).send({ data: card }))
+    .catch((err) => {
+      if (err.name === "ValidationError") {
+        next(new BadRequestError("Переданы некорректные данные при создании карточки"));
+      } else {
+        next(err);
+      }
+    });
+}
+
 module.exports = {
   getRooms,
   addRoom,
   deleteRoom,
   editRoomInfo,
   getRoom,
+  addNewRoom,
 };
