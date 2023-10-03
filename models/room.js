@@ -17,7 +17,7 @@ const roomsSchema = new mongoose.Schema({
   },
   owner: {
     type: String,
-    required: true,
+    required: false,
   },
   roomId: {
     type: Number,

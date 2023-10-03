@@ -25,6 +25,7 @@ const addRoomsJoi = celebrate({
     name: Joi.string().required(),
     category: Joi.string().required(),
     status: Joi.boolean().required(),
+    owner: Joi.string(),
   }),
 });
 
